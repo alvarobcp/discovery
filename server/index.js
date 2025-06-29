@@ -5,6 +5,7 @@ import pool from './db.js';
 import { expressjwt } from 'express-jwt';
 import jwksRsa from 'jwks-rsa';
 import jwt from 'jsonwebtoken';
+
 import { createClient } from '@supabase/supabase-js';
 
 dotenv.config();
@@ -68,22 +69,23 @@ app.post('/api/user/init', async (req, res) => {
     }
 
     const { sub, email, nickname, picture } = decoded;
-    console.log("Decoded token:", decoded);
+
 
 
    
-    // ...
+    //usamos el data para crear el user en la bdd
 
 
      try {
-      const { data: user, error: fetchError } = await supabase
+      const { data: user, error: fetchError } = await supabase //si ya existe no hacemos nada
         .from('users')
         .select('*')
         .eq('auth0_id', sub)
-        .single();
+        .single(); //el single es para sacar el objeto directamente
+        //sacar de aqui el id para no tener que volver a llamar a la bdd? []por hacer
 
       if (fetchError && fetchError.code !== 'PGRST116') {
-        console.error('Supabase error:', fetchError);
+        console.error('Error:', fetchError);
         return res.status(500).json({ error: 'Error checking user' });
       }
 
@@ -98,21 +100,123 @@ app.post('/api/user/init', async (req, res) => {
         ]);
 
         if (insertError) {
-          console.error('Insert error:', insertError);
+          console.error('Error:', insertError);
           return res.status(500).json({ error: 'Error inserting user' });
+        }
+        else{
+          //que hacer?
+          //[]sacar el id del usuario que acabo de crear
+          const {data: id_user, findingIdError} = await supabase
+            .from('users')
+            .select('id')
+            .eq('auth0_id', sub)
+            .single() //el single es para sacar el objeto directamente
+          if (findingIdError) {
+          console.error('Error:', findingIdError);
+          return res.status(500).json({ error: 'Error looking for the user by user ID' });
+          }
+          //[]añadir filas con el id del usuario y las medallas
+
+          const {data: medals, medalsError} = await supabase
+            .from('medals')
+            .select('id')
+          if (medalsError) {
+          console.error('Error:', medalsError);
+          return res.status(500).json({ error: 'Error getting medals ID' });
+          }
+
+          const medals_by_user = medals.map(medal => ({
+            user_id: id_user.id,
+            medal_id: medal.id,
+            achieved: false
+
+          }));
+
+          const {error: insertMedalsError } = await supabase
+            .from('user_medals')
+            .insert(medals_by_user);
+          if (insertMedalsError) {
+          console.error('Error:', insertMedalsError);
+          return res.status(500).json({ error: 'Error inserting data in user medals table' });
+          }
+
+
         }
       }
 
+
       return res.json({ status: 'ok' });
+
+
     } catch (err) {
       console.error('Unexpected error:', err);
       return res.status(500).json({ error: 'Unexpected server error' });
     }
 
-
-
   });
 });
+
+app.post('/medal/:id', async (req, res) => {
+
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'No token provided' });
+
+  jwt.verify(token, getKey, {
+    audience: process.env.AUTH0_CLIENT_ID,
+    issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+    algorithms: ['RS256']
+  }, async (err, decoded) => {
+
+    if (err) {
+      console.error(err);
+      return res.status(401).json({ error: 'Invalid token' });
+    }
+
+      const auth0_id = decoded.sub; //necesitamos el sub para que solo se modifiquen las del usuario que está leyendo el qr
+
+      const { data: user, error: userError } = await supabase //sacamos el user id usando el auth0_id
+        .from('users')
+        .select('*')
+        .eq('auth0_id', auth0_id)
+        .single();
+      
+        if (userError) {
+              console.error('Error:', userError);
+              return res.status(500).json({ error: `Error looking for the user` });
+        }
+
+
+
+      const user_id = user.id; //hemos sacado el id del usuario usando el Auth0_id
+      const medal_id = req.params.id; //el id de la medalla se determina en el endpoint
+
+      try {
+        const { data, error: addMedalError} = await supabase
+          .from('user_medals')
+          .update({'achieved': true})
+          .select('*')
+          .eq('medal_id', medal_id)
+          .eq('user_id', user_id)
+
+        if (addMedalError) {
+              console.error('Error:', addMedalError);
+              return res.status(500).json({ error: `Error adding medal number ${medal_id}` });
+        }
+
+        res.json(data);
+
+
+      } catch (err) {
+        res.status(500).json({ error: err.message });
+      }
+
+
+})
+});
+
+
+
+
 
 app.get('/', async (req, res) => {
   try {
@@ -122,7 +226,7 @@ app.get('/', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-//usamos los comandos de supabase (de momento)
+//usamos los comandos de supabase (de momento así aprendo)
 
 
 const PORT = process.env.PORT || 3000;

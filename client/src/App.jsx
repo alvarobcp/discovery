@@ -7,7 +7,8 @@ import { useEffect } from 'react';
 
 function App() {
 //Vamos a escribir paso a paso como lo he hecho para la próxima
-  const { loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, user, isLoading, } = useAuth0();
+  
+const { loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, user, isLoading, } = useAuth0();
 
   const [count, setCount] = useState(0)
 
