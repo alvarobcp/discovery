@@ -19,7 +19,7 @@ const { loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, user, isLo
     const idToken = await getIdTokenClaims();
       // lo he intentado hacer con getAccessTokenSilently pero al ser una version gratuita no he podido
 
-    await fetch("http://localhost:3000/api/user/init", {
+    await fetch("/api/user/init", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${idToken.__raw}`,

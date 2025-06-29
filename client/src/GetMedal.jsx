@@ -26,7 +26,7 @@ function GetMedal() {
 
       try {
         const token = await getIdTokenClaims();
-        const response = await fetch(`http://localhost:3000/medal/${id}`, {
+        const response = await fetch(`/medal/${id}`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token.__raw}`,

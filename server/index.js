@@ -14,7 +14,7 @@ const app = express();
 //app.use(cors());
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://discovery-6f3c1.web.app'],
+  origin: ['http://localhost:3000', 'https://discovery-6f3c1.web.app', 'https://discovery-slax.onrender.com'],
   allowedHeaders: ['Authorization', 'Content-Type'],
   credentials: true,
 }));
