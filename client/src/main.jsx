@@ -19,9 +19,7 @@ createRoot(document.getElementById('root')).render(
     authorizationParams={{
       redirect_uri: window.location.origin
     }}
-    onRedirectCallback={(appState) => {
-    navigate(appState?.returnTo || window.location.pathname); //para volver a medal/id despues de iniciar sesion al leer el qr
-  }}
+    cacheLocation="localstorage"
   >
     <Router>
       <Routes>

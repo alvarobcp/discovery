@@ -12,7 +12,9 @@ const { loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, user, isLo
 
   const [count, setCount] = useState(0)
 
-  useEffect(() => { //esto creará el usuario en la base de datos, si ya existe, simplemente no hará nada
+  useEffect(() => { 
+    console.log({ isAuthenticated, isLoading, user });
+    //esto creará el usuario en la base de datos, si ya existe, simplemente no hará nada
   const initUser = async () => {
     if (!isAuthenticated || isLoading) return;
 
@@ -35,6 +37,7 @@ const { loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, user, isLo
 
 //y ahora ya, con el usuario identificado, podemos acceder a sus datos
 
+if (isLoading) return <p>Loading...</p>;
 
 if (!isAuthenticated) {
     return (
