@@ -190,6 +190,24 @@ app.post('/medal/:id', async (req, res) => {
       const user_id = user.id; //hemos sacado el id del usuario usando el Auth0_id
       const medal_id = req.params.id; //el id de la medalla se determina en el endpoint
 
+      const { data:isAchieved, errorBool} = await supabase
+        .from('user_medals')
+        .select('achieved')
+        .eq('medal_id', medal_id)
+        .eq('user_id', user_id)
+        .single()
+      if(errorBool) {
+              console.error('Error:', errorBool);
+              return res.status(500).json({ error: `Error getting achieved boolean` });
+        }
+
+      if(isAchieved.achieved){ 
+
+         return res.status(200).json({ status: 'already_achieved' });
+
+      }
+
+
       try {
         const { data, error: addMedalError} = await supabase
           .from('user_medals')
@@ -203,13 +221,13 @@ app.post('/medal/:id', async (req, res) => {
               return res.status(500).json({ error: `Error adding medal number ${medal_id}` });
         }
 
-        res.json(data);
-
+         return res.status(200).json({ status: 'updated_achieved' });
 
       } catch (err) {
         res.status(500).json({ error: err.message });
       }
-
+      
+      
 
 })
 });
