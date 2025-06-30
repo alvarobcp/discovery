@@ -184,16 +184,30 @@ app.post('/medal/:serial', async (req, res) => {
               console.error('Error:', userError);
               return res.status(500).json({ error: `Error looking for the user` });
         }
+        
+        const medal_serial = req.params.serial; //el serial de la medalla se determina en el endpoint
+
+        const { data: medal, error: serialError } = await supabase //sacamos el id de la medalla por el serial
+        .from('medals')
+        .select('id')
+        .eq('serial', medal_serial)
+        .single();
+      
+        if (userError) {
+              console.error('Error:', userError);
+              return res.status(500).json({ error: `Error looking for the user` });
+        }
 
 
 
       const user_id = user.id; //hemos sacado el id del usuario usando el Auth0_id
-      const medal_serial = req.params.serial; //el serial de la medalla se determina en el endpoint
+      const medal_id = medal.id; //id de la medalla
+      
 
       const { data:isAchieved, errorBool} = await supabase
         .from('user_medals')
         .select('achieved')
-        .eq('medals.serial', medal_serial)
+        .eq('medal_id', medal_id)
         .eq('user_id', user_id)
         .single()
       if(errorBool) {
