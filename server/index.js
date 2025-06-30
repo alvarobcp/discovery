@@ -247,7 +247,7 @@ app.post('/api/medal/:serial', async (req, res) => {
 });
 
 
-app.post('/api/medals/', async (req, res) => { //listado de medallas
+app.get('/api/medals/', async (req, res) => { //listado de medallas
 
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'No token provided' });
