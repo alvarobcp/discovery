@@ -37,13 +37,35 @@ const { loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, user, isLo
 
 
 useEffect(() => {
-    if(user){
-    fetch(`https://discovery-slax.onrender.com/api/medals/`)
-      .then(res => res.json())
-      .then(data => setMedals(data));
-    }
-    console.log(medals);
-  }, [isAuthenticated]);
+  
+  if (!isAuthenticated) return;
+
+  const initUserMedals = async () => {
+    
+    const idToken = await getIdTokenClaims();
+
+    const res = await fetch("https://discovery-slax.onrender.com/api/medals", {
+      method: "GET", //usar get???
+      headers: {
+        Authorization: `Bearer ${idToken.__raw}`,
+        "Content-Type": "application/json"
+      },
+    });
+    const medals_data = await res.json(); //necesitamos el await si no manda la promise
+    setMedals(medals_data);
+  }
+  initUserMedals();
+  
+
+}, [isAuthenticated, getIdTokenClaims]);
+
+useEffect(() => { //para ver las medallas, en el otro no va a ir porque es asincrono :/ no nos gusta
+  if (!isAuthenticated) return;
+  if(medals.length > 0){
+  console.log(medals);
+  console.log("Lenght: " + medals.length + ", en el primero vamos a buscar las cosas. Tenemos el user id: " + medals[0].medals.title);
+  }
+}, [isAuthenticated, medals]);
 
 //y ahora ya, con el usuario identificado, podemos acceder a sus datos
 
@@ -74,13 +96,17 @@ if (!isAuthenticated) {
       </div>
       <h1>Discover Bicorp</h1>
 
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='medals'>
+        {medals.length > 0 ?
+        medals.map((element, index) => (
+          <div className='medal' style={ element.achieved ? {backgroundColor:'#FFBB00'} : {backgroundColor:'aliceblue'}}>
+          <p>{element.medals.title}</p>
+          <p>{element.medals.serial}</p>
+          </div>
+        ))
+        : <p>Cargando medallicas...</p>}
+        
+        
       </div>
       
       

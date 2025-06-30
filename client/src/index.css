@@ -75,3 +75,14 @@ button:focus-visible {
   height: 100px;
   border-radius: 50%;
 }
+
+.medals{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.medal{
+    display: flex;
+    flex-direction: column;
+}
