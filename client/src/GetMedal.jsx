@@ -54,7 +54,7 @@ function GetMedal() {
       } catch (err) {
         console.error("Error:", err);
       } finally {
-        navigate("/"); //redirigimos, de momento, luego implementaremos algo para que el usuario consiga la medalla de una forma visual
+        //redirigimos, de momento, luego implementaremos algo para que el usuario consiga la medalla de una forma visual ;
       }
     };
 
@@ -62,10 +62,18 @@ function GetMedal() {
   }, [id, isAuthenticated, isLoading]);
 
 
-    return <p>Medallica conseguida aquí pondremos cositas de momento esto</p>
 
+
+    return(
+    <div>
+    <p>Medallica conseguida aquí pondremos cositas de momento esto</p>
+    <button onClick={() => navigate("/")}>Get the medal!</button>
+    </div>
+    )
 
 
 }
+
+//cositas: cuando hago el escan del qr sin la sesion iniciada, aparece el login y al hacer login vuelve a / por lo que no recibe la medalla
 
 export default GetMedal
