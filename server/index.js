@@ -156,7 +156,7 @@ app.post('/api/user/init', async (req, res) => {
   });
 });
 
-app.post('/medal/:id', async (req, res) => {
+app.post('/medal/:serial', async (req, res) => {
 
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'No token provided' });
@@ -188,12 +188,12 @@ app.post('/medal/:id', async (req, res) => {
 
 
       const user_id = user.id; //hemos sacado el id del usuario usando el Auth0_id
-      const medal_id = req.params.id; //el id de la medalla se determina en el endpoint
+      const medal_serial = req.params.serial; //el serial de la medalla se determina en el endpoint
 
       const { data:isAchieved, errorBool} = await supabase
         .from('user_medals')
         .select('achieved')
-        .eq('medal_id', medal_id)
+        .eq('medals.serial', medal_serial)
         .eq('user_id', user_id)
         .single()
       if(errorBool) {
