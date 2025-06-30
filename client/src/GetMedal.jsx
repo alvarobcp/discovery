@@ -18,7 +18,7 @@ function GetMedal() {
       if(!isAuthenticated){
 
          await loginWithRedirect({
-          appState: { returnTo: `https://discovery-slax.onrender.com/medal/${id}` }, //logingWithRedirect nos hará loguearnos, o crear usuario, y de ahi nos redirige a la medalla
+          appState: { returnTo: `https://discovery-slax.onrender.com/api/medal/${id}` }, //logingWithRedirect nos hará loguearnos, o crear usuario, y de ahi nos redirige a la medalla
         });
         return;
 
@@ -26,7 +26,7 @@ function GetMedal() {
 
       try {
         const token = await getIdTokenClaims();
-        const response = await fetch(`https://discovery-slax.onrender.com/medal/${id}`, {
+        const response = await fetch(`https://discovery-slax.onrender.com/api/medal/${id}`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token.__raw}`,

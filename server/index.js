@@ -156,7 +156,7 @@ app.post('/api/user/init', async (req, res) => {
   });
 });
 
-app.post('/medal/:serial', async (req, res) => {
+app.post('/api/medal/:serial', async (req, res) => {
 
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'No token provided' });
@@ -247,9 +247,24 @@ app.post('/medal/:serial', async (req, res) => {
 });
 
 
-app.post('/api/medals/:sub', async (req, res) => { //listado de medallas
+app.post('/api/medals/', async (req, res) => { //listado de medallas
 
-  const auth0_id = req.params.sub;
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'No token provided' });
+
+  jwt.verify(token, getKey, {
+    audience: process.env.AUTH0_CLIENT_ID,
+    issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+    algorithms: ['RS256']
+  }, async (err, decoded) => {
+
+    if (err) {
+      console.error(err);
+      return res.status(401).json({ error: 'Invalid token' });
+    }
+
+  
+  const auth0_id = decoded.sub;
 
   const { data: user, error: userError } = await supabase //sacamos el user id usando el auth0_id
     .from('users')
@@ -282,7 +297,7 @@ app.post('/api/medals/:sub', async (req, res) => { //listado de medallas
     }
       
       
-
+  })
 });
 
 

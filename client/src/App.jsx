@@ -38,7 +38,7 @@ const { loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, user, isLo
 
 useEffect(() => {
     if(user){
-    fetch(`https://discovery-slax.onrender.com/api/medals/${user.sub}`)
+    fetch(`https://discovery-slax.onrender.com/api/medals/`)
       .then(res => res.json())
       .then(data => setMedals(data));
     }
