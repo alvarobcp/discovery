@@ -193,8 +193,8 @@ app.post('/medal/:serial', async (req, res) => {
         .eq('serial', medal_serial)
         .single();
       
-        if (userError) {
-              console.error('Error:', userError);
+        if (serialError) {
+              console.error('Error:', serialError);
               return res.status(500).json({ error: `Error looking for the user` });
         }
 
@@ -246,6 +246,44 @@ app.post('/medal/:serial', async (req, res) => {
 })
 });
 
+
+app.post('/api/medals/:sub', async (req, res) => { //listado de medallas
+
+  const auth0_id = req.params.sub;
+
+  const { data: user, error: userError } = await supabase //sacamos el user id usando el auth0_id
+    .from('users')
+    .select('*')
+    .eq('auth0_id', auth0_id)
+    .single();
+      
+    if (userError) {
+          console.error('Error:', userError);
+          return res.status(500).json({ error: `Error looking for the user` });
+    }
+
+    const user_id = user.id; //hemos sacado el id del usuario usando el Auth0_id
+ 
+    try {
+      const { data:medals, error: medalsError} = await supabase
+        .from('user_medals')
+        .select('*, medals(*)')
+        .eq('user_id', user_id)
+
+      if (medalsError) {
+            console.error('Error:', medalsError);
+            return res.status(500).json({ error: `Error adding medal number ${medal_id}` });
+      }
+
+        return res.json(medals);
+
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+      
+      
+
+});
 
 
 

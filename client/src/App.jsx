@@ -10,7 +10,8 @@ function App() {
   
 const { loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, user, isLoading, } = useAuth0();
 
-  const [count, setCount] = useState(0)
+  const [userLogged, setUserLogged] = useState("");
+  const [medals, setMedals] = useState([]);
 
   useEffect(() => { 
     console.log({ isAuthenticated, isLoading, user });
@@ -28,12 +29,21 @@ const { loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, user, isLo
         "Content-Type": "application/json"
       },
       body: JSON.stringify({})
-      
     });
   };
 
   initUser();
 }, [isAuthenticated, isLoading]);
+
+
+useEffect(() => {
+    if(user){
+    fetch(`https://discovery-slax.onrender.com/api/medals/${user.sub}`)
+      .then(res => res.json())
+      .then(data => setMedals(data));
+    }
+    console.log(medals);
+  }, [isAuthenticated]);
 
 //y ahora ya, con el usuario identificado, podemos acceder a sus datos
 
@@ -51,6 +61,19 @@ if (!isAuthenticated) {
 
   return (
     <>
+      <div className="card">
+        
+        <img className="profile-image" src={user.picture} alt="Profile image" />
+        <p className="read-the-docs">
+        {user.nickname}
+      </p>
+      <button onClick={() => logout({ returnTo: window.location.origin })}>
+          Log Out
+        </button>
+      
+      </div>
+      <h1>Discover Bicorp</h1>
+
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -59,18 +82,9 @@ if (!isAuthenticated) {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => logout({ returnTo: window.location.origin })}>
-          Log Out
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      
+      
+      
     </>
   )
 }
