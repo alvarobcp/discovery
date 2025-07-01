@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 function GetMedal() {
 
-    const {serial: id} = useParams(); //useParams para traer el serial que le mando en el endpoint
+    const {id} = useParams(); //useParams para traer el serial que le mando en el endpoint
     const navigate = useNavigate(); //para redirigir a la página principal
     const [medalLoaded, setMedalLoaded] = useState(false);
     const [medalData, setMedalData] = useState([]);

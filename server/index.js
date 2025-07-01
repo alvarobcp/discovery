@@ -173,7 +173,7 @@ app.post('/api/medal/:id', async (req, res) => {
               return res.status(500).json({ error: `Error looking for the user` });
         }
         
-        const medal_serial = req.params.serial; //el serial de la medalla se determina en el endpoint
+        const medal_serial = req.params.id; //el serial de la medalla se determina en el endpoint
 
         const { data: medal, error: serialError } = await supabase //sacamos el id de la medalla por el serial
         .from('medals')
