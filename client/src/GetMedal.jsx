@@ -100,6 +100,12 @@ function GetMedal() {
     return(
     <div>
     <p>Medallica conseguida aquí pondremos cositas de momento esto</p>
+    {medalData === null ? <p>Cargando....</p> : 
+    <div>
+      <p>{medalData.title}</p>
+      <img src={medalData.img_achieved} alt="Medal image" />
+    </div>
+    }
     <button onClick={() => navigate("/")}>Get the medal!</button>
     </div>
     )
@@ -107,6 +113,6 @@ function GetMedal() {
 
 }
 
-//cositas: cuando hago el escan del qr sin la sesion iniciada, aparece el login y al hacer login vuelve a / por lo que no recibe la medalla
+//<p>{medalData.title}</p>cositas: cuando hago el escan del qr sin la sesion iniciada, aparece el login y al hacer login vuelve a / por lo que no recibe la medalla
 
 export default GetMedal
