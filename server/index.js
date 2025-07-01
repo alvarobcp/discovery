@@ -42,18 +42,6 @@ function getKey(header, callback) {
 
 app.use(express.json());
 
-/*const checkJwt = expressjwt({
-  secret: jwksRsa.expressJwtSecret({
-    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5
-  }),
-  audience: process.env.AUTH0_AUDIENCE,
-  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
-  algorithms: ['RS256']
-});*/
-
 app.post('/api/user/init', async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'No token provided' });
@@ -300,7 +288,29 @@ app.get('/api/medals/', async (req, res) => { //listado de medallas
   })
 });
 
+app.get('/api/medal/data/:serial', async (req, res) => { //listado de medallas
 
+  const serial = req.params.serial;
+
+    try {
+      const { data: medal, error: medalsError} = await supabase
+        .from('medals')
+        .select('*')
+        .eq('serial', serial)
+
+      if (medalsError) {
+            console.error('Error:', medalsError);
+            return res.status(500).json({ error: `Error adding medal number ${medal_id}` });
+      }
+
+        return res.json(medal);
+
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+      
+      
+  });
 
 
 app.get('/', async (req, res) => {

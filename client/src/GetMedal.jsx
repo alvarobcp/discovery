@@ -6,19 +6,22 @@ import { useEffect } from 'react';
 
 function GetMedal() {
 
-    const {id} = useParams(); //useParams para traer el id que le mando en el endpoint
+    const {serial} = useParams(); //useParams para traer el id que le mando en el endpoint
     const navigate = useNavigate(); //para redirigir a la página principal
+    const [medalLoaded, setMedalLoaded] = useState(false);
+    const [medalData, setMedalData] = useState([]);
 
     const { loginWithRedirect, getIdTokenClaims, isAuthenticated, isLoading } = useAuth0(); //sacamos los datos del usuario
 
     useEffect(() => {
+
     const claimMedal = async () => {
       if (isLoading) return;
 
       if(!isAuthenticated){
 
          await loginWithRedirect({
-          appState: { returnTo: `https://discovery-slax.onrender.com/api/medal/${id}` }, //logingWithRedirect nos hará loguearnos, o crear usuario, y de ahi nos redirige a la medalla
+          appState: { returnTo: `https://discovery-slax.onrender.com/api/medal/${serial}` }, //logingWithRedirect nos hará loguearnos, o crear usuario, y de ahi nos redirige a la medalla
         });
         return;
 
@@ -26,7 +29,7 @@ function GetMedal() {
 
       try {
         const token = await getIdTokenClaims();
-        const response = await fetch(`https://discovery-slax.onrender.com/api/medal/${id}`, {
+        const response = await fetch(`https://discovery-slax.onrender.com/api/medal/${serial}`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token.__raw}`,
@@ -54,12 +57,25 @@ function GetMedal() {
       } catch (err) {
         console.error("Error:", err);
       } finally {
-        //redirigimos, de momento, luego implementaremos algo para que el usuario consiga la medalla de una forma visual ;
+        setMedalLoaded(true);
       }
     };
 
     claimMedal();
   }, [id, isAuthenticated, isLoading]);
+
+
+
+  useEffect(() => {
+    
+    if (!setMedalLoaded) return;
+      fetch(`https://discovery-slax.onrender.com/api/medal/${serial}`)
+        .then(res => res.json())
+        .then(data => setMedalData(data));
+
+        console.log(medalData);
+
+  }, [isAuthenticated, medalLoaded]);
 
 
 
