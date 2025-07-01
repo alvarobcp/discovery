@@ -288,7 +288,7 @@ app.get('/api/medals/', async (req, res) => { //listado de medallas
   })
 });
 
-app.get('/api/medal/data/:id', async (req, res) => { //listado de medallas
+app.get('/api/medal/data/:id', async (req, res) => { //info medalla
 
   const serial = req.params.id;
 
@@ -299,11 +299,15 @@ app.get('/api/medal/data/:id', async (req, res) => { //listado de medallas
         .eq('serial', serial)
 
       if (medalsError) {
-            console.error('Error:', medalsError);
-            return res.status(500).json({ error: `Error adding medal number ${medal_id}` });
+        console.error('Error:', medalsError);
+        return res.status(500).json({ error: `Error finding medal data` });
       }
 
-        return res.json(medal);
+      if (!medal || medal.length === 0) {
+        return res.status(404).json({ error: 'Medal not found' });
+      }
+
+      return res.json(medal[0]); //mando solo el objeto
 
     } catch (err) {
       res.status(500).json({ error: err.message });

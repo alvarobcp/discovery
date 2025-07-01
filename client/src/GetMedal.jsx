@@ -9,7 +9,7 @@ function GetMedal() {
     const {id} = useParams(); //useParams para traer el serial que le mando en el endpoint
     const navigate = useNavigate(); //para redirigir a la página principal
     const [medalLoaded, setMedalLoaded] = useState(false);
-    const [medalData, setMedalData] = useState([]);
+    const [medalData, setMedalData] = useState(null);
 
     const { loginWithRedirect, getIdTokenClaims, isAuthenticated, isLoading } = useAuth0(); //sacamos los datos del usuario
 
@@ -68,12 +68,29 @@ function GetMedal() {
 
   useEffect(() => {
     
-    if (!medalLoaded) return;
-      fetch(`https://discovery-slax.onrender.com/api/medal/${id}`)
-        .then(res => res.json())
-        .then(data => setMedalData(data));
+    if (!medalLoaded || !id) return;
 
-        console.log(medalData);
+    const getMedalData = async () => {
+
+      try{
+
+        const response = await fetch(`https://discovery-slax.onrender.com/api/medal/data/${id}`);
+
+        if(!response.ok) {
+          const error = await response.text();
+          console.error('Fetch error;', error)
+          return;
+        }
+
+        const data = await response.json();
+        setMedalData(data);
+        console.log(data); //quitar
+      } catch (err) {
+        console.error('Error:', err.message);
+      }
+    };
+
+    getMedalData();
 
   }, [isAuthenticated, medalLoaded]);
 
