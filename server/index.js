@@ -144,7 +144,7 @@ app.post('/api/user/init', async (req, res) => {
   });
 });
 
-app.post('/api/medal/:serial', async (req, res) => {
+app.post('/api/medal/:id', async (req, res) => {
 
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'No token provided' });
@@ -288,9 +288,9 @@ app.get('/api/medals/', async (req, res) => { //listado de medallas
   })
 });
 
-app.get('/api/medal/data/:serial', async (req, res) => { //listado de medallas
+app.get('/api/medal/data/:id', async (req, res) => { //listado de medallas
 
-  const serial = req.params.serial;
+  const serial = req.params.id;
 
     try {
       const { data: medal, error: medalsError} = await supabase

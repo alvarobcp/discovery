@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 function GetMedal() {
 
-    const {serial} = useParams(); //useParams para traer el serial que le mando en el endpoint
+    const {serial: id} = useParams(); //useParams para traer el serial que le mando en el endpoint
     const navigate = useNavigate(); //para redirigir a la página principal
     const [medalLoaded, setMedalLoaded] = useState(false);
     const [medalData, setMedalData] = useState([]);
@@ -21,7 +21,7 @@ function GetMedal() {
       if(!isAuthenticated){
 
          await loginWithRedirect({
-          appState: { returnTo: `https://discovery-slax.onrender.com/api/medal/${serial}` }, //logingWithRedirect nos hará loguearnos, o crear usuario, y de ahi nos redirige a la medalla
+          appState: { returnTo: `https://discovery-slax.onrender.com/api/medal/${id}` }, //logingWithRedirect nos hará loguearnos, o crear usuario, y de ahi nos redirige a la medalla
         });
         return;
 
@@ -29,7 +29,7 @@ function GetMedal() {
 
       try {
         const token = await getIdTokenClaims();
-        const response = await fetch(`https://discovery-slax.onrender.com/api/medal/${serial}`, {
+        const response = await fetch(`https://discovery-slax.onrender.com/api/medal/${id}`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token.__raw}`,
@@ -62,14 +62,14 @@ function GetMedal() {
     };
 
     claimMedal();
-  }, [serial, isAuthenticated, isLoading]);
+  }, [id, isAuthenticated, isLoading]);
 
 
 
   useEffect(() => {
     
-    if (!setMedalLoaded) return;
-      fetch(`https://discovery-slax.onrender.com/api/medal/${serial}`)
+    if (!medalLoaded) return;
+      fetch(`https://discovery-slax.onrender.com/api/medal/${id}`)
         .then(res => res.json())
         .then(data => setMedalData(data));
 
