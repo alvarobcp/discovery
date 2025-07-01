@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 function GetMedal() {
 
-    const {serial} = useParams(); //useParams para traer el id que le mando en el endpoint
+    const {serial} = useParams(); //useParams para traer el serial que le mando en el endpoint
     const navigate = useNavigate(); //para redirigir a la página principal
     const [medalLoaded, setMedalLoaded] = useState(false);
     const [medalData, setMedalData] = useState([]);
@@ -62,7 +62,7 @@ function GetMedal() {
     };
 
     claimMedal();
-  }, [id, isAuthenticated, isLoading]);
+  }, [serial, isAuthenticated, isLoading]);
 
 
 
