@@ -10,6 +10,8 @@ function App() {
   
 const { loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, user, isLoading, } = useAuth0();
 
+  const urls = ['https://i.postimg.cc/RqLjw0VN/ahy631d98.jpg', 'https://i.postimg.cc/qzmSZZKr/ctp05va31.jpg', 'https://i.postimg.cc/k2BzrFNb/keo05bc21.png'] //temporal para pruebas luego bdd
+
   const [userLogged, setUserLogged] = useState("");
   const [medals, setMedals] = useState([]);
 
@@ -80,39 +82,86 @@ if (!isAuthenticated) {
 
 
 
-
   return (
     <>
       <div className="card">
         
         <img className="profile-image" src={user.picture} alt="Profile image" />
-        <p className="read-the-docs">
-        {user.nickname}
-      </p>
-      <button onClick={() => logout({ returnTo: window.location.origin })}>
-          Log Out
-        </button>
-      
+        <p className="read-the-docs">{user.nickname}</p>
+        <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>
+        
       </div>
       <h1>Discover Bicorp</h1>
 
-      <div className='medals'>
-        {medals.length > 0 ?
-        medals.map((element, index) => (
-          <div className='medal' style={ element.achieved ? {backgroundColor:'#FFBB00'} : {backgroundColor:'aliceblue'}}>
-          <p>{element.medals.title}</p>
-          <p>{element.medals.serial}</p>
+      {medals.length > 0 ? (
+
+        <div className='medals'>
+          
+          
+          {medals.map((element, index) => (
+
+          <div 
+          className= {element.achieved ? 'medal' : 'no-medal'}
+          key= {index} >
+
+          <div 
+              className = {element.achieved ? 'medal-data medal-achieved' : 'medal-data medal-no-achieved'}
+              style = {element.achieved ? {backgroundImage: `url(${urls[index]})`} : {backgroundImage: 'none'}}>
+              
+              {element.achieved ? <></> : <p><span className="material-symbols-outlined">question_mark</span></p>}
+
           </div>
-        ))
-        : <p>Cargando medallicas...</p>}
-        
-        
-      </div>
+
+          { element.achieved ? <p className='medal-text'>Título</p> : <></> }
+
+        </div>
+
+        ))}
+
+        </div>) : 
       
-      
-      
-    </>
+      (<p>Cargando medallicas...</p>) }
+
+   </>    
+    
   )
 }
 
 export default App
+
+
+
+
+/*<div className='medal' style={ element.achieved ? {backgroundColor:'#FFBB00'} : {backgroundColor:'#f9f4ee'}}>
+          <p>{element.medals.title}</p>
+          <p>{element.medals.serial}</p>
+          dento del div de metal-data meter los elementos e60044
+
+          backgroundImage: `url(${urls[index]})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            
+          <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg">
+          <path
+          d={getPathD(15)}
+          fill="none"
+          stroke="#fff"
+          strokeWidth="3"
+          fillRule="evenodd"
+          /></svg>
+          
+          const cornerRadius = 15; // ← Cambia este valor para modificar las curvas internas
+
+ const getPathD = (r) => `
+  M${r},${r * 2}
+  A${r},${r} 0 0 0 ${r * 2},${r}
+  L${160 - r * 2},${r}
+  A${r},${r} 0 0 0 ${160 - r},${r * 2}
+  L${160 - r},${200 - r * 2}
+  A${r},${r} 0 0 0 ${160 - r * 2},${200 - r}
+  L${r * 2},${200 - r}
+  A${r},${r} 0 0 0 ${r},${200 - r * 2}
+  Z
+`;
+          */
