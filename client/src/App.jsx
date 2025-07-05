@@ -103,16 +103,10 @@ if (!isAuthenticated) {
           <div 
           className= {element.achieved ? 'medal' : 'no-medal'}
           key= {index} >
+       
+          
 
-          <div 
-              className = {element.achieved ? 'medal-data medal-achieved' : 'medal-data medal-no-achieved'}
-              style = {element.achieved ? {backgroundImage: `url(${urls[index]})`} : {backgroundImage: 'none'}}>
-              
-              {element.achieved ? <></> : <p><span className="material-symbols-outlined">question_mark</span></p>}
-
-          </div>
-
-          { element.achieved ? <p className='medal-text'>Título</p> : <></> }
+          { element.achieved ? <p className='medal-text'>🥘</p> : <p className='medal-text'>?</p> }
 
         </div>
 
@@ -132,7 +126,18 @@ export default App
 
 
 
-/*<div className='medal' style={ element.achieved ? {backgroundColor:'#FFBB00'} : {backgroundColor:'#f9f4ee'}}>
+/*
+
+<div 
+              className = {element.achieved ? 'medal-data medal-achieved' : 'medal-data medal-no-achieved'}
+              style = {element.achieved ? {backgroundImage: `url(${urls[index]})`} : {backgroundImage: 'none'}}>
+              
+              {element.achieved ? <></> : <p><span className="material-symbols-outlined">question_mark</span></p>}
+
+          </div>
+
+
+<div className='medal' style={ element.achieved ? {backgroundColor:'#FFBB00'} : {backgroundColor:'#f9f4ee'}}>
           <p>{element.medals.title}</p>
           <p>{element.medals.serial}</p>
           dento del div de metal-data meter los elementos e60044
