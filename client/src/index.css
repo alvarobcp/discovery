@@ -80,12 +80,16 @@ button:focus-visible {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 4fr) repeat(2, 1fr);
-  gap: 10px;
+  /*gap: 10px;*/
   padding: 25px;
-  background-image: url(https://i.ibb.co/yDtSsF8/expanded.png);
+  
+  /* background-image: url(https://i.ibb.co/NgnjJ1b5/expanded-2.png); casas mas pequeñas */
+  /*background-image: url(https://i.ibb.co/C3HZCP8t/expanded2-cambio.png);*/
+  background-image: url(https://i.ibb.co/ccmKrnHZ/expanded-new.png);
+   
   background-repeat: no-repeat;
   background-size: contain;
-  height: 100vh;
+  height: 130vh;
 
 }
 
@@ -168,11 +172,16 @@ button:focus-visible {
 /* nueva version */
 
 .medals{
-  height: auto;
-  grid-template-columns: repeat(3,1fr);
+
+  grid-template-columns: repeat(2,1fr);
   grid-template-rows: repeat(8,1fr);
   justify-items: center;
-
+  align-items: center;
+  padding-top: 20%;
+  padding-bottom: 20%;
+  padding-left: 10%;
+  padding-right: 10%;
+  
 }
 
 
@@ -182,10 +191,11 @@ button:focus-visible {
   align-items: center;
   max-width: 200px;
   max-height: 200px;
-  min-height: 70px;
-  min-width: 70px;
+  min-height: 100px;
+  min-width: 100px;
   border-radius: 10px;
-  background-color: #ffffff57;
+  background-color: #ffffffda;
+  border: #2b2b2b3f 2px dashed;
 }
 
 .no-medal{
@@ -194,8 +204,8 @@ button:focus-visible {
   align-items: center;
   max-width: 200px;
   max-height: 200px;
-  min-height: 70px;
-  min-width: 70px;
+  min-height: 100px;
+  min-width: 100px;
   border-radius: 10px;
   background-color: #ffffff57;
   border: #2b2b2b3f 2px dashed;
@@ -203,5 +213,14 @@ button:focus-visible {
 
 .medal-text{
   margin: 0px;
-  font-size: 2rem;
+  font-size: 2.5rem;
+}
+
+.cell:nth-child(odd) {
+  align-self: start;
+}
+
+.cell:nth-child(even) {
+  align-self: end;
+  margin-top: 50px;
 }

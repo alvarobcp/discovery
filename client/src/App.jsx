@@ -101,12 +101,12 @@ if (!isAuthenticated) {
           {medals.map((element, index) => (
 
           <div 
-          className= {element.achieved ? 'medal' : 'no-medal'}
+          className= {element.achieved ? 'cell medal' : 'cell no-medal'}
           key= {index} >
        
           
 
-          { element.achieved ? <p className='medal-text'>🥘</p> : <p className='medal-text'>?</p> }
+          { element.achieved ? <p className='medal-text'>🥘</p> : <p className='medal-text'></p> }
 
         </div>
 
