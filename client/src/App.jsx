@@ -105,15 +105,14 @@ if (!isAuthenticated) {
 
 
   return (
-    <>
+    <div className='app-container'>
       <div className="card">
-        
-        <img className="profile-image" src={user.picture} alt="Profile image" />
-        <p className="read-the-docs">{user.nickname}</p>
-        <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>
+  
+        <p className="user-text">{user.nickname}</p>
+        <h1>Aventura en Bicorp</h1>
         
       </div>
-      <h1>Discover Bicorp</h1>
+      
       
       {showPopUp && 
       <Modal closePopUp={closePopUp} medalData={currentMedal}></Modal> 
@@ -144,8 +143,10 @@ if (!isAuthenticated) {
         </div>) : 
       
       (<p>Cargando medallicas...</p>) }
+      
+      <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>
 
-   </>    
+   </div>    
     
   )
 }
@@ -198,4 +199,16 @@ export default App
   A${r},${r} 0 0 0 ${r},${200 - r * 2}
   Z
 `;
+
+
+<div className="card">
+        
+        <img className="profile-image" src={user.picture} alt="Profile image" />
+        <p className="read-the-docs">{user.nickname}</p>
+        <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>
+        
+      </div>
+      <h1>Discover Bicorp</h1>
+
+
           */

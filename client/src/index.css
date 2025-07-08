@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.app-container{
+  background-color: #71e9f8;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -28,11 +32,15 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 4em;
+  line-height: 0.9;
+  margin-top: 0px;
+  color: floralwhite;
+  text-shadow: 3px 3px 5px #00000042;
 }
 /*
 button {
@@ -90,6 +98,9 @@ button:focus-visible {
   background-repeat: no-repeat;
   background-size: contain;
   height: 130vh;
+
+  /*Esto ver como lo pongo mejor:*/
+  margin-top: -50px;
 
 }
 
@@ -251,4 +262,23 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   z-index: 1000;
+}
+
+.card {
+  background-image: url(https://i.ibb.co/TxVCsFfq/nubes.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  padding: 2em;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-text{
+  color: #f9f4ee;
+  font-size: 2vh;
+  margin: 0px;
 }

@@ -272,6 +272,7 @@ app.get('/api/medals/', async (req, res) => { //listado de medallas
         .from('user_medals')
         .select('*, medals(*)')
         .eq('user_id', user_id)
+        .order('medal_id', { ascending: true })
 
       if (medalsError) {
             console.error('Error:', medalsError);

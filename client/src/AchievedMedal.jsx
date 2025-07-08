@@ -57,36 +57,38 @@ function AchievedMedal() {
 
 
     return(
-    <>
-    <div className='title-section'>
-        <h2>{medalData.title}</h2>
-        <h2><span>{medalData.icon}</span></h2>
-        <h5>{medalData.mision_number}</h5> 
-    </div>
     
-    <div className='description-section'>
-        <h3>{medalData.section1_title}</h3>
-        <p>{medalData.section1_text}</p>
-    </div>
+    <div className='medal-container'>
+        <div className='title-section'>
+            <h2>{medalData.title}</h2>
+            <h2><span>{medalData.icon}</span></h2>
+            <h5>{medalData.mision_number}</h5> 
+        </div>
+        
+        <div className='description-section'>
+            <h3>{medalData.section1_title}</h3>
+            <p>{medalData.section1_text}</p>
+        </div>
 
-    <div className='quote-section'>
-        <h3>Frase Bicorina</h3>
-        <q>{medalData.quote}</q>
-    </div>
+        <div className='quote-section'>
+            <h3>Frase Bicorina</h3>
+            <q>{medalData.quote}</q>
+        </div>
 
-    <div className='image-section'>
-        <h3>Un vistazo al pasado</h3>
-        <p>{medalData.url_image_description}</p>
-        <img src={medalData.url_image} alt={medalData.url_image_description} />
-    </div>
+        <div className='image-section'>
+            <h3>Un vistazo al pasado</h3>
+            <p>{medalData.url_image_description}</p>
+            <img src={medalData.url_image} alt={medalData.url_image_description} />
+        </div>
 
-    <div className='dictionary-section'>
-    
-    </div>
+        <div className='dictionary-section'>
+        
+        </div>
 
-    <button onClick={() => navigate("/")}>Go back!</button>
-       
-    </>
+        <button onClick={() => navigate("/")}>Go back!</button>
+     
+    </div>
+ 
     )
 
 

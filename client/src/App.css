@@ -4,7 +4,7 @@
   padding: 2rem;*/
   text-align: center;
   width: 100%;
-  background-color: lightblue;
+ 
 }
 
 .logo {
@@ -35,13 +35,7 @@
   }
 }
 
-.card {
-  padding: 2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
+
 
 .read-the-docs {
   color: #888;
