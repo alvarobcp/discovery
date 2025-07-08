@@ -60,32 +60,31 @@ function AchievedMedal() {
     
     <div className='medal-container'>
         <div className='title-section'>
-            <h2>{medalData.title}</h2>
-            <h2><span>{medalData.icon}</span></h2>
+            <h2>{medalData.title} <br /> <span>{medalData.icon}</span> </h2>
             <h5>{medalData.mision_number}</h5> 
         </div>
         
         <div className='description-section'>
-            <h3>{medalData.section1_title}</h3>
+            <p className='section-title'>{medalData.section1_title}</p>
             <p>{medalData.section1_text}</p>
         </div>
 
         <div className='quote-section'>
-            <h3>Frase Bicorina</h3>
+            <p className='section-title'>Frase Bicorina <br />  </p>
             <q>{medalData.quote}</q>
         </div>
 
         <div className='image-section'>
-            <h3>Un vistazo al pasado</h3>
+            <p className='section-title'>Un vistazo al pasado <br /> </p>
             <p>{medalData.url_image_description}</p>
-            <img src={medalData.url_image} alt={medalData.url_image_description} />
+            
         </div>
 
         <div className='dictionary-section'>
-        
+            <p className='section-title'>Palabra Bicorina <br /> </p>
         </div>
 
-        <button onClick={() => navigate("/")}>Go back!</button>
+        <button className='medal-button' onClick={() => navigate("/")}>Go back!</button>
      
     </div>
  
@@ -110,7 +109,7 @@ export default AchievedMedal
       }
 
 
-
+<img src={medalData.url_image} alt={medalData.url_image_description} />
 
       COSAS QUE HACER
     [] Si el id no está (404) en la BDD redirigir a pagina de error o a "/"

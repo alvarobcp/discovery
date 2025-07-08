@@ -3,28 +3,23 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: #213547;
+  /*color-scheme: light dark;
+  color: #213547;*/
   background-color: #f9f4ee;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  text-align: center;
+  width: 100%;
 }
 
 .app-container{
   background-color: #71e9f8;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
 
 body {
   margin: 0;
@@ -41,38 +36,6 @@ h1 {
   margin-top: 0px;
   color: floralwhite;
   text-shadow: 3px 3px 5px #00000042;
-}
-/*
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}*/
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #f9f4ee;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 
@@ -93,11 +56,11 @@ button:focus-visible {
   
   /* background-image: url(https://i.ibb.co/NgnjJ1b5/expanded-2.png); casas mas pequeñas */
   /*background-image: url(https://i.ibb.co/C3HZCP8t/expanded2-cambio.png);*/
-  background-image: url(https://i.ibb.co/ccmKrnHZ/expanded-new.png);
+  background-image: url(https://i.ibb.co/TDZqMR5j/expanded-new.png);
    
   background-repeat: no-repeat;
   background-size: contain;
-  height: 130vh;
+  height: 115vh; /*Esto es para revisar*/
 
   /*Esto ver como lo pongo mejor:*/
   margin-top: -50px;
@@ -157,10 +120,10 @@ button:focus-visible {
   font-size: 80px;
   color: #333333;
 }
-
+/*
 .medal-text{
   margin: 5px 5px 0px 5px;
-}
+}*/
 
 /*
 .medal-achieved{
@@ -195,6 +158,12 @@ button:focus-visible {
   
 }
 
+.medal-text{
+  margin: 0px;
+  
+  color: #ffffffde;
+  transform: rotate(315deg);
+}
 
 .medal{
   display: grid;
@@ -204,9 +173,9 @@ button:focus-visible {
   max-height: 200px;
   min-height: 100px;
   min-width: 100px;
-  border-radius: 10px;
-  background-color: #ffffffda;
-  border: #2b2b2b3f 2px dashed;
+  background-color: #ffffffd9;
+  border: #ffc032 4px solid;
+  font-size: 2.5rem;
 }
 
 .no-medal{
@@ -217,15 +186,12 @@ button:focus-visible {
   max-height: 200px;
   min-height: 100px;
   min-width: 100px;
-  border-radius: 10px;
   background-color: #ffffff57;
   border: #2b2b2b3f 2px dashed;
+  font-size: 1.5rem;
 }
 
-.medal-text{
-  margin: 0px;
-  font-size: 2.5rem;
-}
+/*d55454*/
 
 .cell:nth-child(odd) {
   align-self: start;
@@ -236,6 +202,11 @@ button:focus-visible {
   margin-top: 50px;
 }
 
+.cell{
+  transform: rotate(45deg);
+  border-radius: 20px;
+}
+
 
 .modal-container{
   /*position: fixed;
@@ -244,10 +215,10 @@ button:focus-visible {
   transform: translate(-50%,-50%);
   z-index: 1000;
   */
-  background-color: #FFF;
-  padding: 50px;
+  background-color: white;
+  padding: 40px;
   height: 50%;
-  width: 50%;
+  width: 55%;
   border-radius: 10px;
 }
 
@@ -280,5 +251,90 @@ button:focus-visible {
 .user-text{
   color: #f9f4ee;
   font-size: 2vh;
-  margin: 0px;
+  margin: 10px 0px 0px 0px;
 }
+
+/*MODAL CSS*/
+
+.modal-title{
+  font-size: 3vh;
+  margin-top: 0px;
+  margin-bottom: 10px;
+
+}
+
+.modal-question{
+  font-style: italic;
+  font-size: 1.7vh;
+}
+
+.modal-mission{
+font-weight: 600;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*.modal-end{
+
+}*/
+
+.modal-button{
+  height: 8vh;
+  width: 8vh;
+  background-color: white;
+  border: none;
+}
+
+.modal-button > span{
+  font-size: 5vh;
+}
+
+/*BUTTONS*/
+
+
+
+/*MEDAL CONTAINER SECTION*/
+
+.medal-container{
+ 
+}
+
+.medal-container > div {
+  padding: 10%;
+}
+
+.title-section{
+  background-color: darkseagreen;
+}
+
+.title-section h2{
+  font-size: 2rem;
+}
+
+.description-section{
+  text-align: left;
+  background-color: moccasin;
+
+}
+
+.quote-section{
+text-align: left;
+}
+
+.image-section{
+text-align: left;
+}
+
+.dictionary-section{
+text-align: left;
+}
+
+.medal-button{
+margin-bottom: 10%;
+}
+
+.section-title{
+  font-size: 1.8rem;
+  margin:0;
+}
+
+/*backgrounds just to dev*/

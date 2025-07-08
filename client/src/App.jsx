@@ -108,7 +108,7 @@ if (!isAuthenticated) {
     <div className='app-container'>
       <div className="card">
   
-        <p className="user-text">{user.nickname}</p>
+        <p className="user-text">Hola de nuevo, <br></br><b>{user.nickname}</b> <br /> <span style={{fontSize:'3vh'}}>👋✨</span></p>
         <h1>Aventura en Bicorp</h1>
         
       </div>
@@ -134,7 +134,7 @@ if (!isAuthenticated) {
        
           
 
-          { element.achieved ? <p className='medal-text'>🥘</p> : <p className='medal-text'>{element.medals.mision_number}</p> }
+          { element.achieved ? <p className='medal-text'>{element.medals.icon}</p> : <p className='medal-text'>{element.medals.mision_number}</p> }
 
         </button>
 

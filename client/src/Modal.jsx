@@ -9,8 +9,12 @@ function Modal({closePopUp, medalData}) {
     return(
     <div className='modal-overlay' onClick={closePopUp}>
     <div className='modal-container' onClick={(e) => e.stopPropagation()}> 
-    <p>Esto es mi modal y {medalData.number}</p>
-    <button onClick={closePopUp}>close</button>
+    <h3 className='modal-title'>{medalData.title}</h3>
+    <span class="material-symbols-outlined">qr_code</span>
+    <p className='modal-question'>¿Quiéres saber que debes hacer para encontrarme?</p>
+    <p className='modal-mission'>{medalData.mision}</p>
+    <p className='modal-end'>¡Mucha suerte en la búsqueda! <br /> 😊🔍 </p>
+    <button className='modal-button' onClick={closePopUp}><span class="material-symbols-outlined">close</span></button>
     </div>
     </div>
     )
