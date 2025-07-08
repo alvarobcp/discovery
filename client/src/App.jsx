@@ -4,16 +4,27 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import Modal from './Modal';
 
 function App() {
 //Vamos a escribir paso a paso como lo he hecho para la próxima
   
 const { loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, user, isLoading, } = useAuth0();
 
+const navigate = useNavigate();
+
   const urls = ['https://i.postimg.cc/RqLjw0VN/ahy631d98.jpg', 'https://i.postimg.cc/qzmSZZKr/ctp05va31.jpg', 'https://i.postimg.cc/k2BzrFNb/keo05bc21.png'] //temporal para pruebas luego bdd
 
   const [userLogged, setUserLogged] = useState("");
   const [medals, setMedals] = useState([]);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [currentMedal, setCurrentMedal] = useState({
+    number:'',
+    title: '',
+    mision: '',
+    icon: ''
+  })
 
   useEffect(() => { 
     console.log({ isAuthenticated, isLoading, user });
@@ -69,6 +80,17 @@ useEffect(() => { //para ver las medallas, en el otro no va a ir porque es asinc
   }
 }, [isAuthenticated, medals]);
 
+
+const openPopUp = (medal) => {
+  setShowPopUp(true);
+  const newMedal = {number: medal.mision_number, title: medal.title, mision: medal.mision, icon: medal.icon};
+  console.log(newMedal);
+  setCurrentMedal(newMedal)
+}
+const closePopUp = () => {setShowPopUp(false)};
+
+const editMedal = (number, title, mision, icon) => {setCurrentMedal({number, title, mision, icon})};
+
 //y ahora ya, con el usuario identificado, podemos acceder a sus datos
 
 if (isLoading) return <p>Loading...</p>;
@@ -92,6 +114,12 @@ if (!isAuthenticated) {
         
       </div>
       <h1>Discover Bicorp</h1>
+      
+      {showPopUp && 
+      <Modal closePopUp={closePopUp} medalData={currentMedal}></Modal> 
+      }
+
+      
 
       {medals.length > 0 ? (
 
@@ -100,15 +128,16 @@ if (!isAuthenticated) {
           
           {medals.map((element, index) => (
 
-          <div 
+          <button onClick={ element.achieved ? () => navigate(`/medal/achieved/${element.medals.serial}`)  : () => openPopUp(element.medals) }
+          
           className= {element.achieved ? 'cell medal' : 'cell no-medal'}
           key= {index} >
        
           
 
-          { element.achieved ? <p className='medal-text'>🥘</p> : <p className='medal-text'></p> }
+          { element.achieved ? <p className='medal-text'>🥘</p> : <p className='medal-text'>{element.medals.mision_number}</p> }
 
-        </div>
+        </button>
 
         ))}
 

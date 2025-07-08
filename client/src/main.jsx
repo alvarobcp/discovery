@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { Auth0Provider } from "@auth0/auth0-react";
+import AchievedMedal from './AchievedMedal.jsx';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -25,8 +26,11 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App/>} />
         <Route path="/medal/:id" element={<GetMedal/>} />
+        <Route path="/medal/achieved/:id" element={<AchievedMedal/>} />
       </Routes>
     </Router>
 
   </Auth0Provider>,
 )
+
+//React Route para crear más páginas

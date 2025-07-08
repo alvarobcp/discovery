@@ -84,7 +84,7 @@ function GetMedal() {
 
         const data = await response.json();
         setMedalData(data);
-        console.log(data); //quitar
+
       } catch (err) {
         console.error('Error:', err.message);
       }
