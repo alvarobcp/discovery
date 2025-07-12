@@ -59,9 +59,11 @@ function AchievedMedal() {
     return(
     
     <div className='medal-container'>
-        <div className='title-section'>
-            <h2>{medalData.title} <br /> <span>{medalData.icon}</span> </h2>
-            <h5>{medalData.mision_number}</h5> 
+        <div className='title-section' style={{backgroundImage: 'url(https://i.ibb.co/WZ7ZKwB/fiestas-rollos-1024x576.jpg)'}}>
+            <h2>{medalData.title}</h2>
+            <div className='medal title-medal'><img className='medal-text' src={medalData.icon_url}></img></div>
+            <p className='title-number'>Número de misión {medalData.mision_number}</p>
+            
         </div>
         
         <div className='description-section'>

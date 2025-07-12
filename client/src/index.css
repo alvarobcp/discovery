@@ -81,7 +81,7 @@ h1 {
  
 }
 
-
+/*QUITAR*/
 .medal {
   
   display: flex;
@@ -160,7 +160,8 @@ h1 {
 
 .medal-text{
   margin: 0px;
-  
+  height: 8vh;
+  width: 8vh;
   color: #ffffffde;
   transform: rotate(315deg);
 }
@@ -295,19 +296,61 @@ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, O
 /*MEDAL CONTAINER SECTION*/
 
 .medal-container{
- 
+   font-family: "Noto Sans", sans-serif;
 }
 
 .medal-container > div {
-  padding: 10%;
+  padding: 8%;
 }
 
 .title-section{
-  background-color: darkseagreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 .title-section h2{
-  font-size: 2rem;
+  font-size: 3rem;
+  color: #fffaf0;
+  text-shadow: 3px 3px 5px #00000042;
+  line-height: 0.9;
+  letter-spacing: 0.5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.title-icon{
+  font-size: 3rem;
+  margin: 0px;
+  transform: rotate(45deg);
+}
+
+.div-title-icon{
+  max-width: 200px;
+  max-height: 200px;
+  min-height: 100px;
+  min-width: 100px;
+  background-color: white;
+  border:#ffc032;
+  
+  border-radius: 20px;
+}
+
+.title-number{
+  font-size: 1.2rem;
+  margin: 15px 0px 0px 0px;
+  font-style: italic;
+  color: #fffaf0;
+}
+
+.title-medal{
+  transform: rotate(45deg);
+  border-radius: 20px;
+  margin-top: 15px;
 }
 
 .description-section{

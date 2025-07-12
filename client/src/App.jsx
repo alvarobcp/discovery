@@ -134,7 +134,7 @@ if (!isAuthenticated) {
        
           
 
-          { element.achieved ? <p className='medal-text'>{element.medals.icon}</p> : <p className='medal-text'>{element.medals.mision_number}</p> }
+          { element.achieved ? <img className='medal-text' src={element.medals.icon_url}></img> : <p className='medal-text'>{element.medals.mision_number}</p> }
 
         </button>
 
