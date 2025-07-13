@@ -59,31 +59,42 @@ function AchievedMedal() {
     return(
     
     <div className='medal-container'>
-        <div className='title-section' style={{backgroundImage: 'url(https://i.ibb.co/WZ7ZKwB/fiestas-rollos-1024x576.jpg)'}}>
+        <div className='title-section'>
             <h2>{medalData.title}</h2>
             <div className='medal title-medal'><img className='medal-text' src={medalData.icon_url}></img></div>
             <p className='title-number'>Número de misión {medalData.mision_number}</p>
             
         </div>
+
+        <div className='where-section'>
+            <img width="90" height="90" src="https://img.icons8.com/keek/100/map-marker.png" alt="map-marker"/>
+            <h5 className='section-title'>¿Dónde nos encontramos?</h5>
+            <p>{medalData.place}</p>
+        </div>
         
         <div className='description-section'>
-            <p className='section-title'>{medalData.section1_title}</p>
+            <img width="90" height="90" src="https://img.icons8.com/keek/100/note.png" alt="note"/>
+            <h5 className='section-title'>{medalData.section1_title}</h5>
             <p>{medalData.section1_text}</p>
         </div>
 
         <div className='quote-section'>
-            <p className='section-title'>Frase Bicorina <br />  </p>
-            <q>{medalData.quote}</q>
+          <img width="90" height="90" src="https://img.icons8.com/keek/100/quote-left.png" alt="quote-left"/>
+            <h5 className='section-title'>Frase Bicorina</h5>
+            <p>{medalData.quote}</p>
         </div>
 
         <div className='image-section'>
-            <p className='section-title'>Un vistazo al pasado <br /> </p>
+          <img width="90" height="90" src="https://img.icons8.com/keek/100/image-gallery.png" alt="image-gallery"/>
+            <h5 className='section-title'>Una imágen para el recuerdo</h5>
             <p>{medalData.url_image_description}</p>
             
         </div>
 
         <div className='dictionary-section'>
-            <p className='section-title'>Palabra Bicorina <br /> </p>
+          <img width="90" height="90" src="https://img.icons8.com/keek/100/open-book.png" alt="open-book"/>
+            <h5 className='section-title'>Palabra Bicorina <br /> </h5>
+            <p>{medalData.word}</p>
         </div>
 
         <button className='medal-button' onClick={() => navigate("/")}>Go back!</button>
