@@ -129,7 +129,8 @@ if (!isAuthenticated) {
 
           <button onClick={ element.achieved ? () => navigate(`/medal/achieved/${element.medals.serial}`)  : () => openPopUp(element.medals) }
           
-          className= {element.achieved ? 'cell medal' : 'cell no-medal'}
+          className= {element.achieved ? 'cell medal' : 'cell no-medal'} 
+          style= {element.achieved ? {border:`${element.medals.color} 4px solid`} : {border: '#2b2b2b3f 2px dashed'}}
           key= {index} >
        
           
@@ -144,7 +145,9 @@ if (!isAuthenticated) {
       
       (<p>Cargando medallicas...</p>) }
       
-      <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>
+      <button className='button-style' onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión 👋</button>
+      <footer style={{ textAlign: 'center' }}><p className='footer-text'>Desarrollado por Álvaro Delgado para practicar React, CSS, Firebase, Auth0, Supabase y Node.js con Express.</p></footer>
+
 
    </div>    
     

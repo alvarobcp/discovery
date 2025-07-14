@@ -48,25 +48,7 @@ h1 {
   border-radius: 50%;
 }
 
-.medals{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 4fr) repeat(2, 1fr);
-  /*gap: 10px;*/
-  padding: 25px;
-  
-  /* background-image: url(https://i.ibb.co/NgnjJ1b5/expanded-2.png); casas mas pequeñas */
-  /*background-image: url(https://i.ibb.co/C3HZCP8t/expanded2-cambio.png);*/
-  background-image: url(https://i.ibb.co/TDZqMR5j/expanded-new.png);
-   
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 115vh; /*Esto es para revisar*/
 
-  /*Esto ver como lo pongo mejor:*/
-  margin-top: -50px;
-
-}
 
 
 
@@ -141,27 +123,45 @@ h1 {
 
 
 
+.medals{
+  
+ 
 
+  
+
+  
+  height: 115vh; /*Esto es para revisar*/
+
+  /*Esto ver como lo pongo mejor:*/
+ 
+
+}
 
 
 /* nueva version */
 
 .medals{
-
+  display: grid;
   grid-template-columns: repeat(2,1fr);
-  grid-template-rows: repeat(8,1fr);
+  grid-template-rows: repeat(6,1fr);
   justify-items: center;
   align-items: center;
   padding-top: 20%;
   padding-bottom: 20%;
   padding-left: 10%;
   padding-right: 10%;
-  
+  background-image: url(https://i.ibb.co/TDZqMR5j/expanded-new.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-top: -50px;
+
+  height: auto;
 }
+
 
 .medal-text{
   margin: 0px;
-  height: 8vh;
   width: 8vh;
   color: #ffffffde;
   transform: rotate(315deg);
@@ -176,7 +176,6 @@ h1 {
   min-height: 100px;
   min-width: 100px;
   background-color: #ffffffd9;
-  border: #ffc032 4px solid;
   font-size: 2.5rem;
 }
 
@@ -189,7 +188,7 @@ h1 {
   min-height: 100px;
   min-width: 100px;
   background-color: #ffffff57;
-  border: #2b2b2b3f 2px dashed;
+  
   font-size: 1.5rem;
 }
 
@@ -353,7 +352,7 @@ background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' heigh
   font-size: 1.2rem;
   margin: 15px 0px 0px 0px;
   font-style: italic;
-  color: #fffaf0;
+  font-weight: 500;
 }
 
 .title-medal{
@@ -416,9 +415,35 @@ margin-bottom: 10%;
   font-weight: 500;
 }
 
-.medal-container > p{
+.medal-p{
   font-family: "Nunito", sans-serif;
   font-size: 1.2rem;
+  font-weight: 500;
+}
+
+
+/* CSS */
+.button-style{
+  margin: 15%;
+  background-color: #fff;
+  border: 0 solid #e2e8f0;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  color: #202020;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1;
+  padding: 1rem 1.6rem;
+  text-align: center;
+  box-shadow: 0 3px 4px #a6afc399;
 }
 
 /*backgrounds just to dev*/
+
+@media (max-width: 400px) {
+
+
+
+
+}

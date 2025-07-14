@@ -60,44 +60,44 @@ function AchievedMedal() {
     
     <div className='medal-container'>
         <div className='title-section'>
-            <h2>{medalData.title}</h2>
-            <div className='medal title-medal'><img className='medal-text' src={medalData.icon_url}></img></div>
-            <p className='title-number'>Número de misión {medalData.mision_number}</p>
+            <h2 style={{color:`${medalData.color}`, textShadow: 'none'}}>{medalData.title}</h2>
+            <div className='medal title-medal' style={{border:`${medalData.color} 4px solid`}}><img className='medal-text' src={medalData.icon_url}></img></div>
+            <p className='title-number' style={{color:`${medalData.color}`}}>Número de misión {medalData.mision_number}</p>
             
         </div>
 
         <div className='where-section'>
             <img width="90" height="90" src="https://img.icons8.com/keek/100/map-marker.png" alt="map-marker"/>
             <h5 className='section-title'>¿Dónde nos encontramos?</h5>
-            <p>{medalData.place}</p>
+            <p className='medal-p'>{medalData.place}</p>
         </div>
         
         <div className='description-section'>
             <img width="90" height="90" src="https://img.icons8.com/keek/100/note.png" alt="note"/>
             <h5 className='section-title'>{medalData.section1_title}</h5>
-            <p>{medalData.section1_text}</p>
+            <p className='medal-p'>{medalData.section1_text}</p>
         </div>
 
         <div className='quote-section'>
           <img width="90" height="90" src="https://img.icons8.com/keek/100/quote-left.png" alt="quote-left"/>
             <h5 className='section-title'>Frase Bicorina</h5>
-            <p>{medalData.quote}</p>
+            <p className='medal-p'>{medalData.quote}</p>
         </div>
 
         <div className='image-section'>
           <img width="90" height="90" src="https://img.icons8.com/keek/100/image-gallery.png" alt="image-gallery"/>
             <h5 className='section-title'>Una imágen para el recuerdo</h5>
-            <p>{medalData.url_image_description}</p>
+            <p className='medal-p'>{medalData.url_image_description}</p>
             
         </div>
 
         <div className='dictionary-section'>
           <img width="90" height="90" src="https://img.icons8.com/keek/100/open-book.png" alt="open-book"/>
             <h5 className='section-title'>Palabra Bicorina <br /> </h5>
-            <p>{medalData.word}</p>
+            <p className='medal-p'>{medalData.word}</p>
         </div>
 
-        <button className='medal-button' onClick={() => navigate("/")}>Go back!</button>
+        <button className='button-style' onClick={() => navigate("/")}>Volver a mis medallas 🏅</button>
      
     </div>
  
