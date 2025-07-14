@@ -17,7 +17,8 @@
 }
 
 .app-container{
-  background-color: #71e9f8;
+  background: radial-gradient(circle at top left,#fef6f6,#ffe8cc,#fffed5,#e6ffcc);
+  /*background-color: #71e9f8;*/
 }
 
 
@@ -398,10 +399,9 @@ background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' heigh
 
 .dictionary-section > p{
   text-align: left;
-  background-color: #e0edff;
+  background-color: #6ad451;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 3px 6px 5px #00000033;
 }
 
 .medal-button{
@@ -437,6 +437,42 @@ margin-bottom: 10%;
   padding: 1rem 1.6rem;
   text-align: center;
   box-shadow: 0 3px 4px #a6afc399;
+}
+
+footer{
+  padding: 15% 15% 20% 15%;
+}
+
+.welcome-screen{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  padding: 10%;
+  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+
+}
+
+.welcome-screen > p{
+   font-family: "Nunito", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.welcome-button-style{
+
+  margin: 5%;
+}
+
+.get-medal-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  padding: 10%;
+
 }
 
 /*backgrounds just to dev*/

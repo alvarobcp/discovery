@@ -98,21 +98,22 @@ function GetMedal() {
 
 
     return(
-    <div>
-    <p>Medallica conseguida aquí pondremos cositas de momento esto</p>
-    {medalData === null ? <p>Cargando....</p> : 
-    <div>
-      <p>{medalData.title}</p>
-      <img src={medalData.img_achieved} alt="Medal image" />
+    <div className='get-medal-container'>
+    <p className='medal-p'>¡Enhorabuena, has conseguido la medalla!</p>
+    <img width="100" height="100" src="https://img.icons8.com/keek/100/festival.png" alt="festival"/>
+    {medalData === null ? <p>Cargando la medalla... 🏅</p> : 
+    <div className='title-section' style={{marginBottom: '15px'}}>
+      <h2 style={{color:`${medalData.color}`, textShadow: 'none'}}>{medalData.title}</h2>
+      <div className='medal title-medal' style={{border:`${medalData.color} 4px solid`}}><img className='medal-text' src={medalData.icon_url}></img></div>
     </div>
     }
-    <button onClick={() => navigate("/")}>Get the medal!</button>
+    <button className='button-style' onClick={() => navigate(`/medal/achieved/${medalData.serial}`)}>¡Ver medalla!</button>
     </div>
     )
 
 
 }
 
-//<p>{medalData.title}</p>cositas: cuando hago el escan del qr sin la sesion iniciada, aparece el login y al hacer login vuelve a / por lo que no recibe la medalla
+//[] cuando hago el escan del qr sin la sesion iniciada, aparece el login y al hacer login vuelve a / por lo que no recibe la medalla
 
 export default GetMedal

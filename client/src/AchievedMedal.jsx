@@ -52,7 +52,7 @@ function AchievedMedal() {
 
 
     if(medalData === null){
-         return (<div>cargando...</div>)   
+         return (<div>Cargando los datos...</div>)   
     }
 
 
@@ -92,7 +92,7 @@ function AchievedMedal() {
         </div>
 
         <div className='dictionary-section'>
-          <img width="90" height="90" src="https://img.icons8.com/keek/100/open-book.png" alt="open-book"/>
+          <img width="100" height="100" src="https://img.icons8.com/keek/100/literature.png" alt="literature"/>
             <h5 className='section-title'>Palabra Bicorina <br /> </h5>
             <p className='medal-p'>{medalData.word}</p>
         </div>
@@ -112,18 +112,6 @@ export default AchievedMedal
 
 
 /*
- if(!isAuthenticated){
-
-         await loginWithRedirect({
-          appState: { returnTo: `https://discovery-slax.onrender.com/api/medal/data/${id}` }, //logingWithRedirect nos hará loguearnos, o crear usuario, y de ahi nos redirige a la medalla
-        });
-        return;
-
-      }
-
-
-<img src={medalData.url_image} alt={medalData.url_image_description} />
-
       COSAS QUE HACER
     [] Si el id no está (404) en la BDD redirigir a pagina de error o a "/"
 

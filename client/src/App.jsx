@@ -93,33 +93,48 @@ const editMedal = (number, title, mision, icon) => {setCurrentMedal({number, tit
 
 //y ahora ya, con el usuario identificado, podemos acceder a sus datos
 
-if (isLoading) return <p>Loading...</p>;
+if (isLoading) return <p>¡Cargando tus datos! 😄</p>;
 
 if (!isAuthenticated) {
-    return (
-      <button onClick={() => loginWithRedirect()}>Log In</button>  //loginWithRedirect es una función que me da Auth0, se redirige ahí para el login
+    return ( /*Hacer un componente con esto:*/
+      <div className='welcome-screen'>
+        <h1>Aventura en Bicorp</h1>
+        <img width="80" height="80" src="https://img.icons8.com/keek/100/lol.png" alt="lol"/>
+        <p><b>¡Hola, hola!</b> Estás a punto de empezar la aventura para descubrir todos los datos y curiosidades de <b>Bicorp</b>. <br/> ¡Inicia sesión para comenzar con la aventura!</p>
+        <button className='button-style welcome-button-style' onClick={() => loginWithRedirect()}>Iniciar Sesión ✨</button>
+        <p>Ante cualquier duda sobre como jugar, pregunta en el Ecomuseo de Bicorp</p>
+        <img width="50" height="50" src="https://img.icons8.com/keek/100/metal-music.png" alt="metal-music"/>
+        <footer style={{ textAlign: 'center', color: '#fff' }}><p className='footer-text'>Desarrollado por Álvaro Delgado para practicar React, CSS, Firebase, Auth0, Supabase y Node.js con Express.</p></footer>
+        </div>
+       //loginWithRedirect es una función que me da Auth0, se redirige ahí para el login
       //se usar si no se ha iniciado sesión, es la web del inicio con el log in
     );
   } //cuando se autentifica, isAtuhentificated pasa a true, isLoading también, es como que ahí acaba de cargar
 
+ if(medals.length <= 0){ /*[] Añadir componente de carga*/
+         return (<div>Cargando tus medallas... 🏅</div>)   
+    }
 
 
   return (
-    <div className='app-container'>
-      <div className="card">
+
   
-        <p className="user-text">Hola de nuevo, <br></br><b>{user.nickname}</b> <br /> <span style={{fontSize:'3vh'}}>👋✨</span></p>
-        <h1>Aventura en Bicorp</h1>
-        
-      </div>
-      
-      
+    <div className='app-container'>
+
+      {medals.length > 0 &&
+      <div className="card">
+      <p className="user-text">Hola de nuevo, <br></br><b>{user.nickname}</b> <br /> <span style={{fontSize:'3vh'}}>👋✨</span></p>
+      <h1>Aventura en Bicorp</h1>
+      </div>}
+     
+
+
       {showPopUp && 
       <Modal closePopUp={closePopUp} medalData={currentMedal}></Modal> 
       }
 
       
-
+    
       {medals.length > 0 ? (
 
         <div className='medals'>
@@ -143,11 +158,12 @@ if (!isAuthenticated) {
 
         </div>) : 
       
-      (<p>Cargando medallicas...</p>) }
+      (<p>Cargando tus medallas... 🏅</p>) }
       
-      <button className='button-style' onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión 👋</button>
+      {medals.length > 0 &&
+      <button className='button-style' onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión 👋</button>}
       <footer style={{ textAlign: 'center' }}><p className='footer-text'>Desarrollado por Álvaro Delgado para practicar React, CSS, Firebase, Auth0, Supabase y Node.js con Express.</p></footer>
-
+      
 
    </div>    
     
@@ -155,63 +171,3 @@ if (!isAuthenticated) {
 }
 
 export default App
-
-
-
-
-/*
-
-<div 
-              className = {element.achieved ? 'medal-data medal-achieved' : 'medal-data medal-no-achieved'}
-              style = {element.achieved ? {backgroundImage: `url(${urls[index]})`} : {backgroundImage: 'none'}}>
-              
-              {element.achieved ? <></> : <p><span className="material-symbols-outlined">question_mark</span></p>}
-
-          </div>
-
-
-<div className='medal' style={ element.achieved ? {backgroundColor:'#FFBB00'} : {backgroundColor:'#f9f4ee'}}>
-          <p>{element.medals.title}</p>
-          <p>{element.medals.serial}</p>
-          dento del div de metal-data meter los elementos e60044
-
-          backgroundImage: `url(${urls[index]})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            
-          <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg">
-          <path
-          d={getPathD(15)}
-          fill="none"
-          stroke="#fff"
-          strokeWidth="3"
-          fillRule="evenodd"
-          /></svg>
-          
-          const cornerRadius = 15; // ← Cambia este valor para modificar las curvas internas
-
- const getPathD = (r) => `
-  M${r},${r * 2}
-  A${r},${r} 0 0 0 ${r * 2},${r}
-  L${160 - r * 2},${r}
-  A${r},${r} 0 0 0 ${160 - r},${r * 2}
-  L${160 - r},${200 - r * 2}
-  A${r},${r} 0 0 0 ${160 - r * 2},${200 - r}
-  L${r * 2},${200 - r}
-  A${r},${r} 0 0 0 ${r},${200 - r * 2}
-  Z
-`;
-
-
-<div className="card">
-        
-        <img className="profile-image" src={user.picture} alt="Profile image" />
-        <p className="read-the-docs">{user.nickname}</p>
-        <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>
-        
-      </div>
-      <h1>Discover Bicorp</h1>
-
-
-          */
