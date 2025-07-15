@@ -13,7 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   text-align: center;
-  width: 100%;
+  width: 100vh;
 }
 
 .app-container{
@@ -163,7 +163,8 @@ h1 {
 
 .medal-text{
   margin: 0px;
-  width: 8vh;
+  /*width: 8vh;*/
+  width: 4.5rem;
   color: #ffffffde;
   transform: rotate(315deg);
 }
@@ -219,7 +220,7 @@ h1 {
   */
   background-color: white;
   padding: 40px;
-  height: 50%;
+  height: 60%;
   width: 55%;
   border-radius: 10px;
 }
@@ -477,9 +478,55 @@ footer{
 
 /*backgrounds just to dev*/
 
-@media (max-width: 400px) {
+@media (min-width: 500px) {
 
+  #root{
+    width: -webkit-fill-available;
+  }
 
+  .card{
+    background-image: none;
+    background: linear-gradient(to bottom, #2a4ff2 0%, #99f0ff 100%);
+    padding: 20px;
 
+  }
 
+  .medals{
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4,1fr);
+    background-image: url(https://i.ibb.co/DHrjnp8K/750-design-less.png);
+    background-position: top;
+    background-size: contain;
+    gap: 85px;
+    margin-top: 0px;
+  }
+
+  .medal{
+    min-height: 120px;
+    min-width: 120px;
+  }
+
+  .cell:nth-child(odd) {
+    align-self: normal;
+  }
+
+  .cell:nth-child(2n){
+    align-self: normal;
+    margin-top: 0px;
+  }
+
+  .end-button{
+    margin: 5%;
+  }
+
+  footer{
+    padding: 15%;
+  }
+
+}
+
+@media (min-width: 800px) {
+ .medals{
+    background-size: cover;
+  }
 }

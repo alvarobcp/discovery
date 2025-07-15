@@ -112,7 +112,13 @@ if (!isAuthenticated) {
   } //cuando se autentifica, isAtuhentificated pasa a true, isLoading también, es como que ahí acaba de cargar
 
  if(medals.length <= 0){ /*[] Añadir componente de carga*/
-         return (<div>Cargando tus medallas... 🏅</div>)   
+         return (
+          <div>
+            <div>Cargando tus medallas... 🏅</div>
+            <button className='button-style' onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión 👋</button>
+          </div>
+         
+        )   
     }
 
 
@@ -158,10 +164,11 @@ if (!isAuthenticated) {
 
         </div>) : 
       
-      (<p>Cargando tus medallas... 🏅</p>) }
+      (<div><p>Cargando tus medallas... 🏅</p><button className='button-style' onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión 👋</button>
+      </div>) }
       
       {medals.length > 0 &&
-      <button className='button-style' onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión 👋</button>}
+      <button className='button-style end-button' onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión 👋</button>}
       <footer style={{ textAlign: 'center' }}><p className='footer-text'>Desarrollado por Álvaro Delgado para practicar React, CSS, Firebase, Auth0, Supabase y Node.js con Express.</p></footer>
       
 
