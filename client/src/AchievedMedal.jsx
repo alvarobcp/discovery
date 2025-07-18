@@ -16,11 +16,7 @@ function AchievedMedal() {
     const { loginWithRedirect, getIdTokenClaims, isAuthenticated, isLoading } = useAuth0(); //sacamos los datos del usuario
 
 
-
-
     useEffect(() => {
-    
-    
 
     const getMedalData = async () => {
 
@@ -38,8 +34,6 @@ function AchievedMedal() {
 
         const data = await response.json();
         setMedalData(data);
-        console.log(data);
-        console.log(medalData);
       } catch (err) {
         console.error('Error:', err.message);
       }
@@ -47,7 +41,7 @@ function AchievedMedal() {
 
     getMedalData();
 
-  }, [isAuthenticated]); //hay que añadir isLoading y id??
+  }, [isAuthenticated, isLoading, id]);
 
 
 
@@ -108,11 +102,3 @@ function AchievedMedal() {
 
 
 export default AchievedMedal
-
-
-
-/*
-      COSAS QUE HACER
-    [] Si el id no está (404) en la BDD redirigir a pagina de error o a "/"
-
-*/

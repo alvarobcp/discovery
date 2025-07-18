@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { use, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import './App.css'
 import { useAuth0 } from "@auth0/auth0-react";
@@ -10,6 +10,7 @@ function GetMedal() {
     const navigate = useNavigate(); //para redirigir a la página principal
     const [medalLoaded, setMedalLoaded] = useState(false);
     const [medalData, setMedalData] = useState(null);
+    const [hadMedal, setHadMedal] = useState(false);
 
     const { loginWithRedirect, getIdTokenClaims, isAuthenticated, isLoading } = useAuth0(); //sacamos los datos del usuario
 
@@ -20,8 +21,8 @@ function GetMedal() {
 
       if(!isAuthenticated){
 
-         await loginWithRedirect({
-          appState: { returnTo: `https://discovery-slax.onrender.com/api/medal/${id}` }, //logingWithRedirect nos hará loguearnos, o crear usuario, y de ahi nos redirige a la medalla
+        await loginWithRedirect({
+          appState: { returnTo: `/` }, //logingWithRedirect nos hará loguearnos, o crear usuario, y de ahi nos redirige a la medalla
         });
         return;
 
@@ -40,22 +41,23 @@ function GetMedal() {
         const result = await response.json();
 
         if (response.ok) {
-          console.log("Yesssss");
+       
           if(result.status === "already_achieved"){
-            console.log("you already had the medal");
+            setHadMedal(true);
 
           } else if(result.status === "updated_achieved"){
-            console.log("you got the medal");
+            setHadMedal(false);
           }
           else{
-            console.log("noo something happened");
+            navigate('/');
           }
 
         } else {
-          console.log("noo something happened no medal");
+          navigate('/');
         }
       } catch (err) {
         console.error("Error:", err);
+        navigate('/');
       } finally {
         setMedalLoaded(true);
       }
@@ -96,10 +98,11 @@ function GetMedal() {
 
 
 
-
+/*[] Futura actualización: Añadir pantalla de carga*/
     return(
-    <div className='get-medal-container'>
-    <p className='medal-p'>¡Enhorabuena, has conseguido la medalla!</p>
+    isLoading ? (<p>Cargando...</p>) :
+    (<div className='get-medal-container'>
+    <p className='medal-p'>{hadMedal ? '¡Ya tienes esta medalla, busca las demás!' : '¡Enhorabuena, has conseguido la medalla!'}</p>
     <img width="100" height="100" src="https://img.icons8.com/keek/100/festival.png" alt="festival"/>
     {medalData === null ? <p>Cargando la medalla... 🏅</p> : 
     <div className='title-section' style={{marginBottom: '15px'}}>
@@ -108,12 +111,11 @@ function GetMedal() {
     </div>
     }
     <button className='button-style' onClick={() => navigate(`/medal/achieved/${medalData.serial}`)}>¡Ver medalla!</button>
-    </div>
+    </div>)
     )
 
 
 }
 
-//[] cuando hago el escan del qr sin la sesion iniciada, aparece el login y al hacer login vuelve a / por lo que no recibe la medalla
 
 export default GetMedal
