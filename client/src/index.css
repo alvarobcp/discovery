@@ -342,6 +342,12 @@ footer{
 
 }
 
+.image-about{
+  margin-top: 15px;
+  border-radius: 15px;
+  max-width: 300px;
+}
+
 .welcome-screen > p{
    font-family: "Nunito", sans-serif;
   font-size: 1.2rem;

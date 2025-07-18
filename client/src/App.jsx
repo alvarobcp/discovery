@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Modal from './Modal';
-import WelcomeScreen from './WeolcomeScreen';
+import WelcomeScreen from './WelcomeScreen';
 
 function App() {
 //Vamos a escribir paso a paso como lo he hecho para la próxima

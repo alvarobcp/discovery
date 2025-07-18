@@ -81,7 +81,8 @@ function AchievedMedal() {
         <div className='image-section'>
           <img width="90" height="90" src="https://img.icons8.com/keek/100/image-gallery.png" alt="image-gallery"/>
             <h5 className='section-title'>Una imágen para el recuerdo</h5>
-            <p className='medal-p'>{medalData.url_image_description}</p>
+            <img className='image-about' src='https://picsum.photos/200/' alt="image-section"/>
+            <p className='medal-p'>{medalData.url_image_description}</p> 
             
         </div>
 
@@ -102,3 +103,8 @@ function AchievedMedal() {
 
 
 export default AchievedMedal
+
+/*
+En la siguiente versión, añadir las imagenes que se corresponden con sus descripciones, ahora se está generando una imagen random con https://picsum.photos/200/
+{medalData.url_image_description && (<img className='image-about' src={medalData.url_image_description} alt="image-section"/>)}
+*/
