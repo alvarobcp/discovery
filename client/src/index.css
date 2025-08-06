@@ -388,9 +388,9 @@ footer{
 
 @media (min-width: 700px) {
 
-  #root{
+  /*#root{
     width: -webkit-fill-available;
-  }
+  }*/
 
   .medals{
     grid-template-columns: repeat(3, 1fr);
