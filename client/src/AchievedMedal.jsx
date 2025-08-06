@@ -53,32 +53,32 @@ function AchievedMedal() {
     return(
     
     <div className='medal-container'>
-        <div className='title-section'>
+        <div className='title-section flex-section'>
             <h2 style={{color:`${medalData.color}`, textShadow: 'none'}}>{medalData.title}</h2>
             <div className='medal title-medal' style={{border:`${medalData.color} 4px solid`}}><img className='medal-text' src={medalData.icon_url}></img></div>
             <p className='title-number' style={{color:`${medalData.color}`}}>Número de misión {medalData.mision_number}</p>
             
         </div>
 
-        <div className='where-section'>
+        <div className='where-section flex-section'>
             <img width="90" height="90" src="https://img.icons8.com/keek/100/map-marker.png" alt="map-marker"/>
             <h5 className='section-title'>¿Dónde nos encontramos?</h5>
             <p className='medal-p'>{medalData.place}</p>
         </div>
         
-        <div className='description-section'>
+        <div className='description-section flex-section'>
             <img width="90" height="90" src="https://img.icons8.com/keek/100/note.png" alt="note"/>
             <h5 className='section-title'>{medalData.section1_title}</h5>
             <p className='medal-p'>{medalData.section1_text}</p>
         </div>
 
-        <div className='quote-section'>
+        <div className='quote-section flex-section'>
           <img width="90" height="90" src="https://img.icons8.com/keek/100/quote-left.png" alt="quote-left"/>
             <h5 className='section-title'>Frase Bicorina</h5>
             <p className='medal-p'>{medalData.quote}</p>
         </div>
 
-        <div className='image-section'>
+        <div className='image-section flex-section'>
           <img width="90" height="90" src="https://img.icons8.com/keek/100/image-gallery.png" alt="image-gallery"/>
             <h5 className='section-title'>Una imágen para el recuerdo</h5>
             <img className='image-about' src='https://picsum.photos/200/' alt="image-section"/>
@@ -86,7 +86,7 @@ function AchievedMedal() {
             
         </div>
 
-        <div className='dictionary-section'>
+        <div className='dictionary-section flex-section'>
           <img width="100" height="100" src="https://img.icons8.com/keek/100/literature.png" alt="literature"/>
             <h5 className='section-title'>Palabra Bicorina <br /> </h5>
             <p className='medal-p'>{medalData.word}</p>

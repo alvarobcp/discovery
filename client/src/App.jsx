@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { SpinnerCircularFixed } from 'spinners-react';
 import './App.css'
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from 'react';
@@ -90,7 +89,13 @@ const editMedal = (number, title, mision, icon) => {setCurrentMedal({number, tit
 
 //y ahora ya, con el usuario identificado, podemos acceder a sus datos
 
-if (isLoading) return <p>¡Cargando tus datos! 😄</p>;
+if (isLoading) return (
+<>
+
+<p>Cargando tus datos... 😄</p>
+<SpinnerCircularFixed size={58} thickness={100} speed={100} color="rgba(57, 163, 172, 1)" secondaryColor="rgba(0, 0, 0, 0.25)" style={{margin:'25px'}}/>
+</>
+);
 
 if (!isAuthenticated) {
     return ( <WelcomeScreen button={<button className='button-style welcome-button-style' onClick={() => loginWithRedirect()}>Iniciar Sesión ✨</button>}>
@@ -100,7 +105,8 @@ if (!isAuthenticated) {
  if(medals.length <= 0){ /*[] Añadir componente de carga*/
          return (
           <div>
-            <div>Cargando tus medallas... 🏅</div>
+            <p>Cargando tus medallas... 🏅</p>
+            <SpinnerCircularFixed size={58} thickness={100} speed={100} color="rgba(57, 163, 172, 1)" secondaryColor="rgba(0, 0, 0, 0.25)" style={{margin:'25px'}}/>
             <button className='button-style' onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión 👋</button>
           </div>
          
