@@ -26,6 +26,7 @@ const navigate = useNavigate();
     icon: ''
   })
 
+  //[1] Sacamos el usuario y sus datos
   useEffect(() => { 
     //esto creará el usuario en la base de datos, si ya existe, simplemente no hará nada
   const initUser = async () => {
@@ -47,8 +48,8 @@ const navigate = useNavigate();
   initUser();
 }, [isAuthenticated, isLoading]);
 
-
-useEffect(() => {
+//[2] Actualizamos el array de las medallas que tiene o no el usuario
+useEffect(() => { //para sacar la info de las monedas del usuario
   
   if (!isAuthenticated) return;
 
@@ -57,7 +58,7 @@ useEffect(() => {
     const idToken = await getIdTokenClaims();
 
     const res = await fetch("https://discovery-slax.onrender.com/api/medals", {
-      method: "GET", //usar get???
+      method: "GET", 
       headers: {
         Authorization: `Bearer ${idToken.__raw}`,
         "Content-Type": "application/json"
@@ -71,7 +72,8 @@ useEffect(() => {
 
 }, [isAuthenticated, getIdTokenClaims]);
 
-useEffect(() => { //para ver las medallas, en el otro no va a ir porque es asincrono :/ no nos gusta
+//[3] Cargamos las medallas
+useEffect(() => { //para cargar las medallas
   if (!isAuthenticated) return;
   if(medals.length > 0){
   }

@@ -40,6 +40,7 @@ function GetMedal() {
 
         const result = await response.json();
 
+        //MAnejamos el estado que nos manda la API para saber que o no hacer, si ya la tiene, si no, y donde redirigir la web
         if (response.ok) {
        
           if(result.status === "already_achieved"){
@@ -67,7 +68,7 @@ function GetMedal() {
   }, [id, isAuthenticated, isLoading]);
 
 
-
+//Luego, sacamos la información de la medalla
   useEffect(() => {
     
     if (!medalLoaded || !id) return;
@@ -99,6 +100,7 @@ function GetMedal() {
 
 
 /*[] Futura actualización: Añadir pantalla de carga*/
+//[] Hacer componente aparte!!!
     return(
     isLoading ? (<p>Cargando...</p>) :
     (<div className='get-medal-container'>

@@ -42,7 +42,7 @@ function getKey(header, callback) {
 
 app.use(express.json());
 
-app.post('/api/user/init', async (req, res) => {
+app.post('/api/user/init', async (req, res) => {  //Inicializamos el usuario
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'No token provided' });
 
@@ -76,7 +76,7 @@ app.post('/api/user/init', async (req, res) => {
         console.error('Error:', fetchError);
         return res.status(500).json({ error: 'Error checking user' });
       }
-
+      //si no existe, lo creamos
       if (!user) {
         const { error: insertError } = await supabase.from('users').insert([
           {
@@ -92,19 +92,18 @@ app.post('/api/user/init', async (req, res) => {
           return res.status(500).json({ error: 'Error inserting user' });
         }
         else{
-          //que hacer?
-          //[]sacar el id del usuario que acabo de crear
+          //sacar el id del usuario que acabo de crear
           const {data: id_user, findingIdError} = await supabase
             .from('users')
             .select('id')
             .eq('auth0_id', sub)
-            .single() //el single es para sacar el objeto directamente
+            .single()
           if (findingIdError) {
           console.error('Error:', findingIdError);
           return res.status(500).json({ error: 'Error looking for the user by user ID' });
           }
-          //[]añadir filas con el id del usuario y las medallas
-
+          
+          //se añaden filas con el id del usuario y las medallas
           const {data: medals, medalsError} = await supabase
             .from('medals')
             .select('id')
@@ -112,14 +111,14 @@ app.post('/api/user/init', async (req, res) => {
           console.error('Error:', medalsError);
           return res.status(500).json({ error: 'Error getting medals ID' });
           }
-
+          
           const medals_by_user = medals.map(medal => ({
             user_id: id_user.id,
             medal_id: medal.id,
             achieved: false
 
           }));
-
+          //ya añadimos las filas en user_medals que es donde se guarda si el user tiene o no la medalla
           const {error: insertMedalsError } = await supabase
             .from('user_medals')
             .insert(medals_by_user);
@@ -144,7 +143,7 @@ app.post('/api/user/init', async (req, res) => {
   });
 });
 
-app.post('/api/medal/:id', async (req, res) => {
+app.post('/api/medal/:id', async (req, res) => {  //endpoint que se usa para leer los QRs y saber si el usuario consigue la medalla o ya la tiene
 
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'No token provided' });
@@ -289,7 +288,7 @@ app.get('/api/medals/', async (req, res) => { //listado de medallas
   })
 });
 
-app.get('/api/medal/data/:id', async (req, res) => { //info medalla
+app.get('/api/medal/data/:id', async (req, res) => { //Para sacar la informacion de una medalla (al pasarle el serial)
 
   const serial = req.params.id;
 

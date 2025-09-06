@@ -37,3 +37,5 @@ createRoot(document.getElementById('root')).render(
 )
 
 //React Route para crear más páginas
+//GetMedal -> Para cuando escaneamos el QR
+//AchievedMedal -> Para cuando pulsamos en las distintas medallas
